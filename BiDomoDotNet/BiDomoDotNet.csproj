@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Ryan Wilson, Erik Freund</Authors>
+    <Company>Build Intelligence</Company>
+    <Description>SDK for the Domo API</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\BiDomoDotNet.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
