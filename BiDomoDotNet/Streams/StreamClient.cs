@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BiDomoDotNet.Datasets;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BiDomoDotNet.Streams
 {
-	public class StreamClient
+	public class StreamClient : IDomoStreamClient
 	{
 		private DomoHttpClient _domoHttpClient;
 
@@ -57,7 +58,7 @@ namespace BiDomoDotNet.Streams
 		public async Task<StreamDataset> GetStreamDetailsAsync(int streamId)
 		{
 			string streamUri = $"v1/streams/{streamId}";
-
+            
 			var response = await _domoHttpClient.Client.GetAsync(streamUri);
 			string responseMessage = await response.Content.ReadAsStringAsync();
 			var streamDataset = JsonConvert.DeserializeObject<StreamDataset>(responseMessage);

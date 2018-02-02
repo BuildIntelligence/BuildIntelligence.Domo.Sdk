@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BiDomoDotNet
 {
-	public class DomoConfig : IDomoConfig
+    public class DomoConfig : IDomoConfig
 	{
 		public string ClientId { get; set; }
 		public string ClientSecret { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BiDomoDotNet.Datasets
 {
-	public class DatasetClient
+	public class DatasetClient : IDomoDatasetClient
 	{
 		// This class does not currently support PDP operations.
 
@@ -95,6 +95,7 @@ namespace BiDomoDotNet.Datasets
 
 		/// <summary>
 		/// Gets a dataset and returns a deserialized object of type T
+        /// TODO: CSV Deserializer
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="datasetId"></param>
@@ -105,10 +106,11 @@ namespace BiDomoDotNet.Datasets
 			string datasetUri = $"v1/datasets/{datasetId}/data?includeHeader={includeHeader}";
 			_domoHttpClient.SetAcceptRequestHeaders("text/csv");
 			var response = await _domoHttpClient.Client.GetAsync(datasetUri);
-			string responseAsString = await response.Content.ReadAsStringAsync();
-			var responseAsObject = JsonConvert.DeserializeObject<List<T>>(responseAsString);
+            throw new NotImplementedException();
+			//string responseAsString = await response.Content.ReadAsStringAsync();
+			//var responseAsObject = JsonConvert.DeserializeObject<List<T>>(responseAsString);
 
-			return responseAsObject;
+			//return responseAsObject;
 		}
 
 		/// <summary>

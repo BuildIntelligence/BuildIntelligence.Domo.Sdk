@@ -1,11 +1,9 @@
 ﻿using BiDomoDotNet.Datasets;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BiDomoDotNet.Streams
 {
-	public class StreamDataset
+    public class StreamDataset
 	{
 		public int Id { get; set; }
 		public Dataset Dataset { get; set; }

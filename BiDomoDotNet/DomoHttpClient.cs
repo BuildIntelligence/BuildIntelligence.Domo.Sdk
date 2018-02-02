@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BiDomoDotNet
 {
-	public class DomoHttpClient
+    public class DomoHttpClient
 	{
 		private IDomoConfig _config;
 		public DomoAuthToken _authToken;

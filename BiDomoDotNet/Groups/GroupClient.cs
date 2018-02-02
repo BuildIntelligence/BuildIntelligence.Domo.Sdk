@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BiDomoDotNet.Groups
 {
-	public class GroupClient
+	public class GroupClient : IDomoGroupClient
 	{
 		private DomoHttpClient _domoHttpClient;
 
-		public GroupClient(DomoConfig config)
+		public GroupClient(IDomoConfig config)
 		{
 			_domoHttpClient = new DomoHttpClient(config);
 		}

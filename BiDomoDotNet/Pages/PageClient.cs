@@ -1,17 +1,15 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BiDomoDotNet.Pages
 {
-	public class PageClient
+    public class PageClient : IDomoPageClient
 	{
 		private DomoHttpClient _domoHttpClient;
 
-		public PageClient(DomoConfig config)
+		public PageClient(IDomoConfig config)
 		{
 			_domoHttpClient = new DomoHttpClient(config);
 		}

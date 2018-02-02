@@ -1,17 +1,15 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BiDomoDotNet.Users
 {
-	public class UserClient
+    public class UserClient : IDomoUserClient
 	{
 		public DomoHttpClient _domoHttpClient;
 
-		public UserClient(DomoConfig config)
+		public UserClient(IDomoConfig config)
 		{
 			_domoHttpClient = new DomoHttpClient(config);
 		}

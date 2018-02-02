@@ -3,18 +3,15 @@ using BiDomoDotNet.Groups;
 using BiDomoDotNet.Pages;
 using BiDomoDotNet.Streams;
 using BiDomoDotNet.Users;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BiDomoDotNet
 {
-    public class DomoClient
+    public class DomoClient : IGotDomod
     {
-		private DomoConfig _config { get; set; }
+		private IDomoConfig _config { get; set; }
 
 
-		public DomoClient(DomoConfig config)
+		public DomoClient(IDomoConfig config)
 		{
 			_config = config;
 			Datasets = new DatasetClient(_config);
@@ -24,10 +21,10 @@ namespace BiDomoDotNet
 			Users = new UserClient(_config);
 		}
 
-		public DatasetClient Datasets { get; set; }
-		public GroupClient Groups { get; set; }
-		public PageClient Pages { get; set; }
-		public StreamClient Streams { get; set; }
-		public UserClient Users { get; set; }
+		public IDomoDatasetClient Datasets { get; set; }
+		public IDomoGroupClient Groups { get; set; }
+		public IDomoPageClient Pages { get; set; }
+		public IDomoStreamClient Streams { get; set; }
+		public IDomoUserClient Users { get; set; }
 	}
 }

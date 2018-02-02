@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BiDomoDotNet.Streams
 {
-	public class StreamExecution
+    public class StreamExecution
 	{
 		public int Id { get; set; }
 		public DateTime StartedAt { get; set; }

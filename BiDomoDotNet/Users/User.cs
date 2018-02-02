@@ -1,11 +1,10 @@
 ﻿using BiDomoDotNet.Groups;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BiDomoDotNet.Users
 {
-	public class User
+    public class User
 	{
 		public string Name { get; set; }
 		public string Email { get; set; }
