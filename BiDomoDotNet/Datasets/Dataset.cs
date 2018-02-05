@@ -14,7 +14,7 @@ namespace BiDomoDotNet.Datasets
 		public string UpdatedAt { get; set; }
 		public string DataCurrentAt { get; set; }
 		public bool PdpEnabled { get; set; }
-		public List<Policies> Policies { get; set; }
+		public IEnumerable<Policies> Policies { get; set; }
 	}
 
 	public class Owner
@@ -28,9 +28,9 @@ namespace BiDomoDotNet.Datasets
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Type { get; set; }
-		public List<int> Users { get; set; }
-		public List<int> Groups { get; set; }
-		public List<Filter> Filters { get; set; }
+		public IEnumerable<int> Users { get; set; }
+		public IEnumerable<int> Groups { get; set; }
+		public IEnumerable<Filter> Filters { get; set; }
 	}
 
 	public class Filter
@@ -38,6 +38,6 @@ namespace BiDomoDotNet.Datasets
 		public string Column { get; set; }
 		public bool Not { get; set; }
 		public string Operator { get; set; }
-		public List<string> Values { get; set; }
+		public IEnumerable<string> Values { get; set; }
 	}
 }
