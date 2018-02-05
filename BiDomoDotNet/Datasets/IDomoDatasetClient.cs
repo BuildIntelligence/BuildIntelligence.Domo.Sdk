@@ -6,8 +6,8 @@ namespace BiDomoDotNet.Datasets
     public interface IDomoDatasetClient
     {
         Task<IEnumerable<Dataset>> ListDatasetsAsync(int limit, int offset /*Sorting as optional param or overload*/);
-        Task<Dataset> CreateDatasetAsync(DatasetSchemaBase schema);
-        Task<bool> UpdateDatasetAsync(string datasetId, DatasetSchemaBase schema);
+        Task<Dataset> CreateDatasetAsync(IDatasetSchema schema);
+        Task<bool> UpdateDatasetAsync(string datasetId, IDatasetSchema schema);
         Task<bool> DeleteDatasetAsync(string datasetId);
         Task<string> RetrieveCsvAsync(string datasetId, bool includeHeader = false);
         Task<IEnumerable<T>> RetrieveDataAsync<T>(string datasetId, bool includeHeader = false);
