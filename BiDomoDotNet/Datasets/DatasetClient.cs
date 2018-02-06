@@ -34,7 +34,7 @@ namespace BiDomoDotNet.Datasets
 		/// </summary>
 		/// <param name="schema"></param>
 		/// <returns>Dataset object with newly created dataset information</returns>
-		public async Task<Dataset> CreateDatasetAsync(DatasetSchemaBase schema)
+		public async Task<Dataset> CreateDatasetAsync(IDatasetSchema schema)
 		{
 			string datasetUri = "v1/datasets";
 			_domoHttpClient.SetContentType("application/json");
@@ -55,7 +55,7 @@ namespace BiDomoDotNet.Datasets
 		/// <param name="datasetId"></param>
 		/// <param name="schema"></param>
 		/// <returns>Boolean whether update was successful</returns>
-		public async Task<bool> UpdateDatasetAsync(string datasetId, DatasetSchemaBase schema)
+		public async Task<bool> UpdateDatasetAsync(string datasetId, IDatasetSchema schema)
 		{
 			string datasetUri = $"v1/datasets/{datasetId}";
 			_domoHttpClient.SetContentType("application/json");
