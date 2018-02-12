@@ -4,11 +4,6 @@
 
 Current Release: 0.1.0
 
-### Notice - Python 3 Compatibility
-
-* PyDomo is written for Python3, and is not compatible with Python2
-* Execute scripts via 'python3', and updates via 'pip3'
-
 ### About
 
 * BI Domo dotnet is an unofficial .NET Standard Library to streamline using the Domo API in a .NET project. The library provides a simple interface over the Domo API providing a basic set of functionality.
