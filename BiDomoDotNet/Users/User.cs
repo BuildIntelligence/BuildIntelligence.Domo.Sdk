@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BiDomoDotNet.Users
 {
-    public class User
+    public class DomoUser
 	{
 		public string Name { get; set; }
 		public string Email { get; set; }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BiDomoDotNet.Helpers;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace BiDomoDotNet.Users
 		}
 
 
-		public async Task<User> RetrieveUserAsync(long userId)
+		public async Task<DomoUser> RetrieveUserAsync(long userId)
 		{
 			string userUri = $"v1/users/{userId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
@@ -23,16 +24,16 @@ namespace BiDomoDotNet.Users
 
 			var response = await _domoHttpClient.Client.GetAsync(userUri);
 			string stringResponse = await response.Content.ReadAsStringAsync();
-			return JsonConvert.DeserializeObject<User>(stringResponse);
+			return JsonConvert.DeserializeObject<DomoUser>(stringResponse);
 		}
 
 		/// <summary>
 		/// Creates a user in Domo
 		/// </summary>
-		/// <param name="user"></param>
+		/// <param name="user">Properties and values for the user being created</param>
 		/// <param name="sendInvite">Will send an invitation email to new user</param>
 		/// <returns></returns>
-		public async Task<User> CreateUserAsync(User user, bool sendInvite)
+		public async Task<DomoUser> CreateUserAsync(DomoUser user, bool sendInvite)
 		{
 			string userId = $"v1/users?sendInvite={sendInvite}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
@@ -41,10 +42,10 @@ namespace BiDomoDotNet.Users
 			StringContent content = new StringContent(JsonConvert.SerializeObject(user));
 			var response = await _domoHttpClient.Client.PostAsync(userId, content);
 			string stringResponse = await response.Content.ReadAsStringAsync();
-			return JsonConvert.DeserializeObject<User>(stringResponse);
+			return JsonConvert.DeserializeObject<DomoUser>(stringResponse);
 		}
 
-		public async Task<bool> UpdateUserAsync(long userId, User user)
+		public async Task<bool> UpdateUserAsync(long userId, DomoUser user)
 		{
 			string userUri = $"v1/users/{userId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
@@ -63,15 +64,18 @@ namespace BiDomoDotNet.Users
 			return response.IsSuccessStatusCode;
 		}
 
-		public async Task<IEnumerable<User>> ListUsersAsync(long limit, long offset)
+		public async Task<IEnumerable<DomoUser>> ListUsersAsync(long limit, long offset)
 		{
-			string userUri = $"v1/users?limit={limit}&offset={offset}";
+            if (limit > 500) throw new LimitNotWithinBoundsException($"The list limit of {limit} used is above the max limit. The maximum limit is 500");
+            if (limit < 0) throw new LimitNotWithinBoundsException($"List limit {limit} cannot be used. Use a limit value between 1 and 500");
+
+            string userUri = $"v1/users?limit={limit}&offset={offset}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 			_domoHttpClient.SetContentType("application/json");
 
 			var response = await _domoHttpClient.Client.GetAsync(userUri);
 			string stringResponse = await response.Content.ReadAsStringAsync();
-			return JsonConvert.DeserializeObject<IEnumerable<User>>(stringResponse);
+			return JsonConvert.DeserializeObject<IEnumerable<DomoUser>>(stringResponse);
 		}
 	}
 }
