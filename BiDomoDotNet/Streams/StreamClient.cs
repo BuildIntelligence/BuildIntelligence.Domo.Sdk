@@ -1,4 +1,5 @@
 ﻿using BiDomoDotNet.Datasets;
+using BiDomoDotNet.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -74,6 +75,9 @@ namespace BiDomoDotNet.Streams
 		/// <returns></returns>
 		public async Task<List<StreamDataset>> ListAsync(int limit, int offset)
 		{
+            if (limit > 500) throw new LimitNotWithinBoundsException($"The list limit of {limit} used is above the max limit. The maximum limit is 500");
+            if (limit < 0) throw new LimitNotWithinBoundsException($"List limit {limit} cannot be used. Use a limit value between 1 and 500");
+
 			string streamsUri = $"v1/streams?limit={limit}&offset={offset}";
 
 			var response = await _domoHttpClient.Client.GetAsync(streamsUri);

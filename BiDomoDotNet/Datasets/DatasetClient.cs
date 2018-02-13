@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BiDomoDotNet.Helpers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -18,9 +19,18 @@ namespace BiDomoDotNet.Datasets
 			_domoHttpClient = new DomoHttpClient(config);
 		}
 
+        /// <summary>
+        /// Returns a list of datasets in Domo. Max list size is 50
+        /// </summary>
+        /// <param name="limit">Number of datasets to return. Max is 50</param>
+        /// <param name="offset">Offset number of datasets to start return from</param>
+        /// <returns></returns>
 		public async Task<IEnumerable<Dataset>> ListDatasetsAsync(int limit, int offset /*Sorting as optional param or overload*/)
 		{
-			_domoHttpClient.SetAcceptRequestHeaders("application/json");
+            if (limit > 50) throw new LimitNotWithinBoundsException($"The list limit of {limit} used is above the max limit. The maximum limit is 50");
+            if (limit < 0) throw new LimitNotWithinBoundsException($"List limit {limit} cannot be used. Use a limit value between 1 and 50");
+
+            _domoHttpClient.SetAcceptRequestHeaders("application/json");
 
 			var response = await _domoHttpClient.Client.GetAsync($"v1/datasets?limit={limit}&offset={offset}");
 			string responseAsString = await response.Content.ReadAsStringAsync();
