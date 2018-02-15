@@ -12,6 +12,7 @@ namespace BiDomoDotNet.Streams
 {
 	public class StreamClient : IDomoStreamClient
 	{
+		// HttpClient to use for Stream API
 		private DomoHttpClient _domoHttpClient;
 
 		public StreamClient(IDomoConfig config)

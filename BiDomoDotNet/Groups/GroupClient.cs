@@ -37,7 +37,7 @@ namespace BiDomoDotNet.Groups
 		/// Creates a group
 		/// </summary>
 		/// <param name="group"></param>
-		/// <returns>bool whether method is successful</returns>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> CreateGroupAsync(Group group)
 		{
 			string groupUri = $"v1/groups";
@@ -55,7 +55,7 @@ namespace BiDomoDotNet.Groups
 		/// </summary>
 		/// <param name="groupId"></param>
 		/// <param name="groupSettings"></param>
-		/// <returns>bool whether method is successful</returns>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> UpdateGroupAsync(string groupId, Group groupSettings)
 		{
 			string groupUri = $"v1/groups/{groupId}";
@@ -72,7 +72,7 @@ namespace BiDomoDotNet.Groups
 		/// Permanently deletes a group
 		/// </summary>
 		/// <param name="groupId"></param>
-		/// <returns>bool whether method is successful</returns>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> DeleteGroupAsync(string groupId)
 		{
 			string groupUri = $"v1/groups/{groupId}";
@@ -84,7 +84,7 @@ namespace BiDomoDotNet.Groups
 		}
 
 		/// <summary>
-		/// Gets a list of all groups
+		/// Gets a list of groups
 		/// </summary>
 		/// <param name="offset"></param>
 		/// <param name="limit"></param>
@@ -106,7 +106,7 @@ namespace BiDomoDotNet.Groups
 		/// </summary>
 		/// <param name="groupId"></param>
 		/// <param name="userId"></param>
-		/// <returns>bool whether method is successful</returns>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> AddUserAsync(string groupId, string userId)
 		{
 			string groupUri = $"v1/groups/{groupId}/users/{userId}";
@@ -141,7 +141,7 @@ namespace BiDomoDotNet.Groups
 		/// </summary>
 		/// <param name="groupId"></param>
 		/// <param name="userId"></param>
-		/// <returns>bool whether method is successful</returns>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> RemoveUserAsync(string groupId, string userId)
 		{
 			string groupUri = $"v1/groups/{groupId}/users/{userId}";
