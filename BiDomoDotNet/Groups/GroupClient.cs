@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BiDomoDotNet.Helpers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -64,7 +65,10 @@ namespace BiDomoDotNet.Groups
 
 		public async Task<IEnumerable<Group>> ListGroupsAsync(int offset, int limit)
 		{
-			string groupUri = $"v1/groups?offset={offset}&limit={limit}";
+            if (limit > 500) throw new LimitNotWithinBoundsException($"The list limit of {limit} used is above the max limit. The maximum limit is 500");
+            if (limit < 0) throw new LimitNotWithinBoundsException($"List limit {limit} cannot be used. Use a limit value between 1 and 500");
+
+            string groupUri = $"v1/groups?offset={offset}&limit={limit}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 			_domoHttpClient.SetContentType("application/json");
 
@@ -84,9 +88,12 @@ namespace BiDomoDotNet.Groups
 			return response.IsSuccessStatusCode;
 		}
 
-		public async Task<IEnumerable<int>> ListUsersAsync(string groupId, string offset, string limit)
+		public async Task<IEnumerable<int>> ListUsersAsync(string groupId, string offset, int limit)
 		{
-			string groupUri = $"v1/groups/{groupId}/users";
+            if (limit > 500) throw new LimitNotWithinBoundsException($"The list limit of {limit} used is above the max limit. The maximum limit is 500");
+            if (limit < 0) throw new LimitNotWithinBoundsException($"List limit {limit} cannot be used. Use a limit value between 1 and 500");
+
+            string groupUri = $"v1/groups/{groupId}/users?offset={offset}&limit={limit}";
 			_domoHttpClient.SetContentType("application/json");
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
