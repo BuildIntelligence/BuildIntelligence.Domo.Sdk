@@ -14,5 +14,6 @@ namespace BiDomoDotNet.Datasets
         Task ExportToCsvFile(string datasetId, string path, bool includeHeader, string fileName);
         Task<Dataset> RetrieveDatasetAsync(string datasetId);
         Task<bool> UpdateDatasetAsync(string datasetId, Dataset datasetSchema);
+        Task<bool> ImportDataAsync<T>(string datasetId, string data);
     }
 }
