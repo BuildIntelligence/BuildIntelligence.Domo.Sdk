@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BiDomoDotNet.Datasets
+namespace BuildIntelligence.Domo.Sdk.Datasets
 {
 	public class Schema
 	{

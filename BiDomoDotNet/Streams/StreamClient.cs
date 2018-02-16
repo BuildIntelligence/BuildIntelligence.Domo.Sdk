@@ -1,5 +1,5 @@
-﻿using BiDomoDotNet.Datasets;
-using BiDomoDotNet.Helpers;
+﻿using BuildIntelligence.Domo.Sdk.Datasets;
+using BuildIntelligence.Domo.Sdk.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Streams
+namespace BuildIntelligence.Domo.Sdk.Streams
 {
 	public class StreamClient : IDomoStreamClient
 	{

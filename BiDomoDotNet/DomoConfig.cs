@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BiDomoDotNet
+namespace BuildIntelligence.Domo.Sdk
 {
     public class DomoConfig : IDomoConfig
 	{

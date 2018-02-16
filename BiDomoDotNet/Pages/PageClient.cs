@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Pages
+namespace BuildIntelligence.Domo.Sdk.Pages
 {
     public class PageClient : IDomoPageClient
 	{

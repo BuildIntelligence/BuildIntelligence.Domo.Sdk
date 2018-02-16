@@ -1,4 +1,4 @@
-﻿namespace BiDomoDotNet.Groups
+﻿namespace BuildIntelligence.Domo.Sdk.Groups
 {
     public class GroupBase
 	{

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Pages
+namespace BuildIntelligence.Domo.Sdk.Pages
 {
     public interface IDomoPageClient
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Datasets
+namespace BuildIntelligence.Domo.Sdk.Datasets
 {
     public interface IDomoDatasetClient
     {

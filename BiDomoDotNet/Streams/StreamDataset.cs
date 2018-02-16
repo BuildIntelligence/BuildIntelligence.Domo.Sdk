@@ -1,7 +1,7 @@
-﻿using BiDomoDotNet.Datasets;
+﻿using BuildIntelligence.Domo.Sdk.Datasets;
 using System;
 
-namespace BiDomoDotNet.Streams
+namespace BuildIntelligence.Domo.Sdk.Streams
 {
     public class StreamDataset
 	{

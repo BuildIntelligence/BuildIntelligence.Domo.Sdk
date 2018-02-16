@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Groups
+namespace BuildIntelligence.Domo.Sdk.Groups
 {
     public interface IDomoGroupClient
     {

@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Groups
+namespace BuildIntelligence.Domo.Sdk.Groups
 {
 	public class GroupClient : IDomoGroupClient
 	{

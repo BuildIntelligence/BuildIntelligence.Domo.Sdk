@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BiDomoDotNet.Pages
+namespace BuildIntelligence.Domo.Sdk.Pages
 {
 	public class Page
 	{

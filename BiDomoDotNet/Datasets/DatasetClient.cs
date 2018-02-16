@@ -1,4 +1,4 @@
-﻿using BiDomoDotNet.Helpers;
+﻿using BuildIntelligence.Domo.Sdk.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Datasets
+namespace BuildIntelligence.Domo.Sdk.Datasets
 {
     public class DatasetClient : IDomoDatasetClient
     {

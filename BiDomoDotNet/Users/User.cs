@@ -1,8 +1,8 @@
-﻿using BiDomoDotNet.Groups;
+﻿using BuildIntelligence.Domo.Sdk.Groups;
 using System;
 using System.Collections.Generic;
 
-namespace BiDomoDotNet.Users
+namespace BuildIntelligence.Domo.Sdk.Users
 {
     public class DomoUser
 	{

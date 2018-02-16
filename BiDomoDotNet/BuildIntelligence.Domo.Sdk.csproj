@@ -6,6 +6,8 @@
     <Company>Build Intelligence</Company>
     <Description>SDK for the Domo API</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyName>BuildIntelligence.Domo.Sdk</AssemblyName>
+    <RootNamespace>BuildIntelligence.Domo.Sdk</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

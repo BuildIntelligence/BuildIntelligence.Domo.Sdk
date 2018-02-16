@@ -1,10 +1,10 @@
-﻿using BiDomoDotNet.Datasets;
-using BiDomoDotNet.Groups;
-using BiDomoDotNet.Pages;
-using BiDomoDotNet.Streams;
-using BiDomoDotNet.Users;
+﻿using BuildIntelligence.Domo.Sdk.Datasets;
+using BuildIntelligence.Domo.Sdk.Groups;
+using BuildIntelligence.Domo.Sdk.Pages;
+using BuildIntelligence.Domo.Sdk.Streams;
+using BuildIntelligence.Domo.Sdk.Users;
 
-namespace BiDomoDotNet
+namespace BuildIntelligence.Domo.Sdk
 {
     public class DomoClient : IGotDomod
     {
