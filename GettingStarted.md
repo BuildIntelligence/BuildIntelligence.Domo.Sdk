@@ -32,23 +32,21 @@ IGotDomod domo = new DomoClient(config);
 // Create a new Stream. This Creates a Stream and the dataset in Domo Associated with that stream
 
 // schema for dataset
+IDictionary<string, DomoDataType> tableColumns = new Dictionary<string, DomoDataType>()
+{
+    { "str Column 1", DomoDataType.STRING },
+    { "int Column 2", DomoDataType.LONG },
+    { "dt Column 3", DomoDataType.DATETIME },
+    { "date Column 4", DomoDataType.DATE },
+    { "decimal Column 5", DomoDataType.DECIMAL },
+    { "float Column 6", DomoDataType.DOUBLE },
+    { "bool Column 7", DomoDataType.STRING } //Bool isn't a supported api col type so you either have to use string or long
+};
 IDatasetSchema dsSchema = new DatasetSchema() 
 {
     Name = "Name for Dataset",
     Description = "Example Dataset for demo",
-    Schema = new Schema()
-    {
-        Columns = new List<Column>()
-        {
-            new Column(){ Name = "str Column 1", Type = "STRING"},
-            new Column(){ Name = "int Column 2", Type = "LONG"},
-            new Column(){ Name = "dt Column 3", Type = "DATETIME"},
-            new Column(){ Name = "date Column 4", Type = "DATE"},
-            new Column(){ Name = "decimal Column 5", Type = "DECIMAL"},
-            new Column(){ Name = "float Column 6", Type = "DOUBLE"},
-            new Column(){ Name = "bool Column 7", Type = "STRING"} //Bool isn't a supported api col type
-        }
-    }
+    Schema = new Schema(tableColumns)
 }
 
 StreamDataset streamDataset = await domo.Streams.CreateAsync(dsSchema, UpdateMethod.APPEND); // Executions will append rows to dataset
@@ -76,5 +74,5 @@ if(uploadPartHttpResponse.IsSuccessStatusCode){
 
 ### Update Stream Dataset Metadata. i.e. Name, Description, DataSet Schema
 ```Csharp
-// TODO
+    StreamDataset updatedStreamDataset = await UpdateMetaAsync(streamId, streamDataset);
 ```
