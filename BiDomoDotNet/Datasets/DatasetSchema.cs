@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BiDomoDotNet.Datasets
 {
-	public class DatasetSchemaBase : IDatasetSchema
+	public class DatasetSchema : IDatasetSchema
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
