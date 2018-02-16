@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Groups
+namespace BuildIntelligence.Domo.Sdk.Groups
 {
 	public class GroupClient : IDomoGroupClient
 	{
@@ -17,6 +17,11 @@ namespace BiDomoDotNet.Groups
 			_domoHttpClient = new DomoHttpClient(config);
 		}
 
+		/// <summary>
+		/// Retrieves information about a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <returns>Group requested</returns>
 		public async Task<Group> RetrieveGroupAsync(string groupId)
 		{
 			string groupUri = $"v1/groups/{groupId}";
@@ -29,6 +34,11 @@ namespace BiDomoDotNet.Groups
 			return objectResponse;
 		}
 
+		/// <summary>
+		/// Creates a group
+		/// </summary>
+		/// <param name="group"></param>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> CreateGroupAsync(Group group)
 		{
 			string groupUri = $"v1/groups";
@@ -41,6 +51,12 @@ namespace BiDomoDotNet.Groups
 			return response.IsSuccessStatusCode;
 		}
 
+		/// <summary>
+		/// Updates an existing group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <param name="groupSettings"></param>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> UpdateGroupAsync(string groupId, Group groupSettings)
 		{
 			string groupUri = $"v1/groups/{groupId}";
@@ -53,6 +69,11 @@ namespace BiDomoDotNet.Groups
 			return response.IsSuccessStatusCode;
 		}
 
+		/// <summary>
+		/// Permanently deletes a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> DeleteGroupAsync(string groupId)
 		{
 			string groupUri = $"v1/groups/{groupId}";
@@ -63,6 +84,12 @@ namespace BiDomoDotNet.Groups
 			return response.IsSuccessStatusCode;
 		}
 
+		/// <summary>
+		/// Gets a list of groups
+		/// </summary>
+		/// <param name="offset"></param>
+		/// <param name="limit"></param>
+		/// <returns>A list of groups</returns>
 		public async Task<IEnumerable<Group>> ListGroupsAsync(int offset, int limit)
 		{
             if (limit > 500) throw new LimitNotWithinBoundsException($"The list limit of {limit} used is above the max limit. The maximum limit is 500");
@@ -78,6 +105,12 @@ namespace BiDomoDotNet.Groups
 			return objectResponse;
 		}
 
+		/// <summary>
+		/// Adds an existing user to a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <param name="userId"></param>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> AddUserAsync(string groupId, string userId)
 		{
 			string groupUri = $"v1/groups/{groupId}/users/{userId}";
@@ -88,7 +121,14 @@ namespace BiDomoDotNet.Groups
 			return response.IsSuccessStatusCode;
 		}
 
-		public async Task<IEnumerable<int>> ListUsersAsync(string groupId, string offset, int limit)
+		/// <summary>
+		/// Lists users in a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <param name="offset"></param>
+		/// <param name="limit"></param>
+		/// <returns>A list of user Ids</returns>
+		public async Task<IEnumerable<int>> ListUsersAsync(string groupId, string offset, string limit)
 		{
             if (limit > 500) throw new LimitNotWithinBoundsException($"The list limit of {limit} used is above the max limit. The maximum limit is 500");
             if (limit < 0) throw new LimitNotWithinBoundsException($"List limit {limit} cannot be used. Use a limit value between 1 and 500");
@@ -103,6 +143,12 @@ namespace BiDomoDotNet.Groups
 			return users;
 		}
 
+		/// <summary>
+		/// Removes a user from a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <param name="userId"></param>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> RemoveUserAsync(string groupId, string userId)
 		{
 			string groupUri = $"v1/groups/{groupId}/users/{userId}";

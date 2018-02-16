@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BiDomoDotNet.Groups
+namespace BuildIntelligence.Domo.Sdk.Groups
 {
 	public class Group : GroupBase
 	{

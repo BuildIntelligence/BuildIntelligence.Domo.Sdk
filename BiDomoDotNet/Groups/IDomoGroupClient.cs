@@ -1,70 +1,63 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Groups
+namespace BuildIntelligence.Domo.Sdk.Groups
 {
     public interface IDomoGroupClient
     {
-        /// <summary>
-        /// Retrieve a given Domo Group by Id.
-        /// </summary>
-        /// <param name="groupId">Id of Group to retrieve.</param>
-        /// <returns></returns>
-        Task<Group> RetrieveGroupAsync(string groupId);
-
-        /// <summary>
-        /// Create a Domo Group.
-        /// </summary>
-        /// <param name="group"></param>
-        /// <returns></returns>
-        Task<bool> CreateGroupAsync(Group group);
-
-        /// <summary>
-        /// Update a given Domo Group by Id.
-        /// </summary>
-        /// <param name="groupId"></param>
-        /// <param name="groupSettings"></param>
-        /// <returns></returns>
-        Task<bool> UpdateGroupAsync(string groupId, Group groupSettings);
-
-        /// <summary>
-        /// Delete a Domo Group by Id.
-        /// </summary>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
-        Task<bool> DeleteGroupAsync(string groupId);
-
-        /// <summary>
-        /// Retrieve a List of Groups with a given limit on list size and a given starting offset
-        /// </summary>
-        /// <param name="offset"></param>
-        /// <param name="limit">Max Number of Groups to return. The max limit is 500</param>
-        /// <returns></returns>
-        Task<IEnumerable<Group>> ListGroupsAsync(int offset, int limit);
-
-        /// <summary>
-        /// Add a Domo user to a given group.
-        /// </summary>
-        /// <param name="groupId"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        Task<bool> AddUserAsync(string groupId, string userId);
-
-        /// <summary>
-        /// Retrieve list of Domo Users in a given group.
-        /// </summary>
-        /// <param name="groupId"></param>
-        /// <param name="offset">Offset of users to start list from</param>
-        /// <param name="limit">Max number of users to return. the max limit is 500.</param>
-        /// <returns></returns>
-        Task<IEnumerable<int>> ListUsersAsync(string groupId, string offset, int limit);
-
-        /// <summary>
-        /// Remove a user from a Group.
-        /// </summary>
-        /// <param name="groupId"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        Task<bool> RemoveUserAsync(string groupId, string userId);
+		/// <summary>
+		/// Retrieves information about a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <returns>Group requested</returns>
+		Task<Group> RetrieveGroupAsync(string groupId);
+		/// <summary>
+		/// Creates a group
+		/// </summary>
+		/// <param name="group"></param>
+		/// <returns>Boolean whether method is successful</returns>
+		Task<bool> CreateGroupAsync(Group group);
+		/// <summary>
+		/// Updates an existing group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <param name="groupSettings"></param>
+		/// <returns>Boolean whether method is successful</returns>
+		Task<bool> UpdateGroupAsync(string groupId, Group groupSettings);
+		/// <summary>
+		/// Permanently deletes a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <returns>Boolean whether method is successful</returns>
+		Task<bool> DeleteGroupAsync(string groupId);
+		/// <summary>
+		/// Gets a list of groups
+		/// </summary>
+		/// <param name="offset"></param>
+		/// <param name="limit"></param>
+		/// <returns>A list of groups</returns>
+		Task<IEnumerable<Group>> ListGroupsAsync(int offset, int limit);
+		/// <summary>
+		/// Adds an existing user to a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <param name="userId"></param>
+		/// <returns>Boolean whether method is successful</returns>
+		Task<bool> AddUserAsync(string groupId, string userId);
+		/// <summary>
+		/// Lists users in a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <param name="offset"></param>
+		/// <param name="limit"></param>
+		/// <returns>A list of user Ids</returns>
+		Task<IEnumerable<int>> ListUsersAsync(string groupId, string offset, string limit);
+		/// <summary>
+		/// Removes a user from a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <param name="userId"></param>
+		/// <returns>Boolean whether method is successful</returns>
+		Task<bool> RemoveUserAsync(string groupId, string userId);
     }
 }

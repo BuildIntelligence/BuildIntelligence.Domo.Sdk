@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BiDomoDotNet.Helpers
+namespace BuildIntelligence.Domo.Sdk.Helpers
 {
     public class LimitNotWithinBoundsException : Exception
     {

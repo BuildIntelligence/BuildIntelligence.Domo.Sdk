@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BiDomoDotNet
+namespace BuildIntelligence.Domo.Sdk
 {
     public interface IDomoConfig
 	{
@@ -23,10 +23,5 @@ namespace BiDomoDotNet
         /// Scope for Authorization. Data and/or Users scopes
         /// </summary>
 		DomoAuthScope Scope { get; set; }
-
-        /// <summary>
-        /// CLI Logging Verbosity for Http Requests
-        /// </summary>
-		HttpLoggingLevel HttpLogging { get; set; }
 	}
 }

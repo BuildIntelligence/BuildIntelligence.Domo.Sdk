@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BiDomoDotNet.Streams
+namespace BuildIntelligence.Domo.Sdk.Streams
 {
     public class StreamExecution
 	{

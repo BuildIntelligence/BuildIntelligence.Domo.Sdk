@@ -1,4 +1,4 @@
-﻿using BiDomoDotNet.Helpers;
+﻿using BuildIntelligence.Domo.Sdk.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Datasets
+namespace BuildIntelligence.Domo.Sdk.Datasets
 {
     public class DatasetClient : IDomoDatasetClient
     {
@@ -180,6 +180,13 @@ namespace BiDomoDotNet.Datasets
             return response.IsSuccessStatusCode;
         }
 
+        /// <summary>
+		/// Imports data into an existing dataset. Replaces all data in dataset.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="datasetId"></param>
+		/// <param name="data"></param>
+		/// <returns>bool whether successful or not</returns>
         public async Task<bool> ImportDataAsync<T>(string datasetId, string data)
         {
             string datasetUri = $"v1/datasets/{datasetId}/data";

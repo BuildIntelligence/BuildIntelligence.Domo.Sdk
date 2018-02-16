@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiDomoDotNet", "BiDomoDotNet\BiDomoDotNet.csproj", "{1CD0BB02-3804-40E0-A079-5AF9E44ADDD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildIntelligence.Domo.Sdk", "BiDomoDotNet\BuildIntelligence.Domo.Sdk.csproj", "{1CD0BB02-3804-40E0-A079-5AF9E44ADDD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB1C0199-7832-41BA-9BF5-A0C6486EB0A3}"
 	ProjectSection(SolutionItems) = preProject

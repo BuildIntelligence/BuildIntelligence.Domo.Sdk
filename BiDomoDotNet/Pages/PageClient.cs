@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Pages
+namespace BuildIntelligence.Domo.Sdk.Pages
 {
     public class PageClient : IDomoPageClient
 	{
@@ -13,7 +13,12 @@ namespace BiDomoDotNet.Pages
 		{
 			_domoHttpClient = new DomoHttpClient(config);
 		}
-
+		
+		/// <summary>
+		/// Retrieves information about a page
+		/// </summary>
+		/// <param name="pageId"></param>
+		/// <returns>Page information</returns>
 		public async Task<Page> RetrievePageAsync(string pageId)
 		{
 			string pageUri = $"v1/pages/{pageId}";
@@ -26,6 +31,11 @@ namespace BiDomoDotNet.Pages
 			return pageResponse;
 		}
 
+		/// <summary>
+		/// Creates a new page
+		/// </summary>
+		/// <param name="page"></param>
+		/// <returns>Newly created page information</returns>
 		public async Task<Page> CreatePageAsync(Page page)
 		{
 			string pageUri = "v1/pages";
@@ -39,6 +49,12 @@ namespace BiDomoDotNet.Pages
 			return pageResponse;
 		}
 
+		/// <summary>
+		/// Updates an existing page
+		/// </summary>
+		/// <param name="pageId"></param>
+		/// <param name="page"></param>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> UpdatePageAsync(string pageId, Page page)
 		{
 			string pageUri = $"v1/pages/{pageId}";
@@ -50,6 +66,11 @@ namespace BiDomoDotNet.Pages
 			return response.IsSuccessStatusCode;
 		}
 
+		/// <summary>
+		/// Deletes a page
+		/// </summary>
+		/// <param name="pageId"></param>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> DeletePageAsync(string pageId)
 		{
 			string pageUri = $"v1/pages/{pageId}";
@@ -60,6 +81,12 @@ namespace BiDomoDotNet.Pages
 			return response.IsSuccessStatusCode;
 		}
 
+		/// <summary>
+		/// Gets a list of pages
+		/// </summary>
+		/// <param name="limit">Limit of pages to return. Limit is 50.</param>
+		/// <param name="offset">Offset of Pages to start retrieving from.</param>
+		/// <returns>List of pages</returns>
 		public async Task<IEnumerable<Page>> ListPagesAsync(int limit, int offset)
 		{
 			string pageUri = $"v1/pages?offset={offset}&limit={limit}";
@@ -72,6 +99,11 @@ namespace BiDomoDotNet.Pages
 			return pageResponse;
 		}
 
+		/// <summary>
+		/// Retrives a page collection from a page Id
+		/// </summary>
+		/// <param name="pageId"></param>
+		/// <returns>Page collection information</returns>
 		public async Task<PageCollection> RetrievePageCollectionAsync(long pageId)
 		{
 			string pageUri = $"v1/pages/{pageId}/collections";
@@ -84,6 +116,12 @@ namespace BiDomoDotNet.Pages
 			return collection;
 		}
 
+		/// <summary>
+		/// Creates a page collection
+		/// </summary>
+		/// <param name="pageId"></param>
+		/// <param name="pageInfo"></param>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> CreatePageCollectionAsync(long pageId, PageInfo pageInfo)
 		{
 			string pageUri = $"v1/pages/{pageId}/collections";
@@ -95,6 +133,13 @@ namespace BiDomoDotNet.Pages
 			return response.IsSuccessStatusCode;
 		}
 
+		/// <summary>
+		/// Updates an existing page collection
+		/// </summary>
+		/// <param name="pageId"></param>
+		/// <param name="pageCollectionId"></param>
+		/// <param name="pageInfo"></param>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> UpdatePageCollectionAsync(long pageId, long pageCollectionId, PageInfo pageInfo)
 		{
 			string pageUri = $"v1/pages/{pageId}/collections/{pageCollectionId}";
@@ -106,6 +151,12 @@ namespace BiDomoDotNet.Pages
 			return response.IsSuccessStatusCode;
 		}
 
+		/// <summary>
+		/// Deletes a page collection
+		/// </summary>
+		/// <param name="pageId"></param>
+		/// <param name="pageCollectionId"></param>
+		/// <returns>Boolean whether method is successful</returns>
 		public async Task<bool> DeletePageCollectionAsync(long pageId, long pageCollectionId)
 		{
 			string pageUri = $"v1/pages/{pageId}/collections/{pageCollectionId}";

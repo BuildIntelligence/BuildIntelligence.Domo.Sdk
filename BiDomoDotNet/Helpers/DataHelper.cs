@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace BiDomoDotNet.Helpers
+namespace BuildIntelligence.Domo.Sdk.Helpers
 {
 	public static class DataHelper
 	{

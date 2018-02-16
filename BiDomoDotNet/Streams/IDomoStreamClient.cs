@@ -1,9 +1,9 @@
-﻿using BiDomoDotNet.Datasets;
+﻿using BuildIntelligence.Domo.Sdk.Datasets;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BiDomoDotNet.Streams
+namespace BuildIntelligence.Domo.Sdk.Streams
 {
     public interface IDomoStreamClient
     {

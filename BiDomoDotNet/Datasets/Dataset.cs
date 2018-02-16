@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BiDomoDotNet.Datasets
+namespace BuildIntelligence.Domo.Sdk.Datasets
 {
-	public class Dataset : DatasetSchemaBase
+	public class Dataset : DatasetSchema
 	{
 		//Dataset POCO
 		public string Id { get; set; }
