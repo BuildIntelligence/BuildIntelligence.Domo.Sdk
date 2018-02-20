@@ -1,5 +1,4 @@
-﻿using BiDomoDotNet.Helpers;
-using BuildIntelligence.Domo.Sdk.Helpers;
+﻿using BuildIntelligence.Domo.Sdk.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
