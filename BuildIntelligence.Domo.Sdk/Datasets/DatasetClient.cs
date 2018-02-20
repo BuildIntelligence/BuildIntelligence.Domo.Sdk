@@ -1,4 +1,4 @@
-﻿using BuildIntelligence.Domo.Sdk.Helpers;
+﻿using BuildIntelligence.Domo.Sdk.Exceptions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

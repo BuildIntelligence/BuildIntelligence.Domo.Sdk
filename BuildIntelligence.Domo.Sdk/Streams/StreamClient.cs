@@ -1,5 +1,5 @@
 ﻿using BuildIntelligence.Domo.Sdk.Datasets;
-using BuildIntelligence.Domo.Sdk.Helpers;
+using BuildIntelligence.Domo.Sdk.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;

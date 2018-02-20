@@ -1,13 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Ryan Wilson, Erik Freund</Authors>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Authors>Build Intelligence, Ryan Wilson, Erik Freund</Authors>
     <Company>Build Intelligence</Company>
     <Description>SDK for the Domo API</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>BuildIntelligence.Domo.Sdk</AssemblyName>
     <RootNamespace>BuildIntelligence.Domo.Sdk</RootNamespace>
+    <PackageProjectUrl>https://github.com/BuildIntelligence/BuildIntelligence.Domo.Sdk</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BuildIntelligence/BuildIntelligence.Domo.Sdk</RepositoryUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/BuildIntelligence/BuildIntelligence.Domo.Sdk/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://buildintelligence.com/images/logos/png/Icon/Transparent%20Background/BI-Icon-Square150x150Logo.scale-400.png</PackageIconUrl>
+    <Version>0.1.0</Version>
+    <PackageTags>Domo</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

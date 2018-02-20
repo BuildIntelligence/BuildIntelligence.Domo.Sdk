@@ -1,12 +1,12 @@
 
-# .NET Standard - Domo API SDK (BuildIntelligence.Domo.Sdk)
+# .NET Standard 1.3 - Domo API SDK (BuildIntelligence.Domo.Sdk)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://www.opensource.org/licenses/MIT)
 
 Current Release: 0.1.0
 
 ### About
 
-* The BI Domo SDK is a .NET Standard Library to streamline using the Domo API in a .NET project. The library provides a simple interface over the Domo API providing a basic set of functionality.
+* The BI Domo SDK is a .NET Standard 1.3 Library to streamline using the Domo API in a .NET project. The library provides a simple interface over the Domo API providing a basic set of functionality.
 * [NuGet Package]().
 
 ### Features:

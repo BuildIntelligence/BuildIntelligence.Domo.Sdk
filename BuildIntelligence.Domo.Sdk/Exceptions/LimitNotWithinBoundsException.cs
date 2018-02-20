@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BuildIntelligence.Domo.Sdk.Helpers
+namespace BuildIntelligence.Domo.Sdk.Exceptions
 {
     public class LimitNotWithinBoundsException : Exception
     {
