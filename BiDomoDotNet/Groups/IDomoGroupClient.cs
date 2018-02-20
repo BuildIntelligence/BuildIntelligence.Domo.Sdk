@@ -51,7 +51,7 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 		/// <param name="offset"></param>
 		/// <param name="limit"></param>
 		/// <returns>A list of user Ids</returns>
-		Task<IEnumerable<int>> ListUsersAsync(string groupId, string offset, string limit);
+		Task<IEnumerable<int>> ListUsersAsync(string groupId, int offset, int limit);
 		/// <summary>
 		/// Removes a user from a group
 		/// </summary>

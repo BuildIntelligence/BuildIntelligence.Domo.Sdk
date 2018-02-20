@@ -1,4 +1,5 @@
 ﻿using BiDomoDotNet.Helpers;
+using BuildIntelligence.Domo.Sdk.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -128,7 +129,7 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 		/// <param name="offset"></param>
 		/// <param name="limit"></param>
 		/// <returns>A list of user Ids</returns>
-		public async Task<IEnumerable<int>> ListUsersAsync(string groupId, string offset, string limit)
+		public async Task<IEnumerable<int>> ListUsersAsync(string groupId, int offset, int limit)
 		{
             if (limit > 500) throw new LimitNotWithinBoundsException($"The list limit of {limit} used is above the max limit. The maximum limit is 500");
             if (limit < 0) throw new LimitNotWithinBoundsException($"List limit {limit} cannot be used. Use a limit value between 1 and 500");

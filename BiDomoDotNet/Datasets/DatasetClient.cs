@@ -65,7 +65,7 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         /// <param name="datasetId"></param>
         /// <param name="schema"></param>
         /// <returns>Boolean whether update was successful</returns>
-        public async Task<bool> UpdateDatasetAsync(string datasetId, IDatasetSchema schema)
+        public async Task<Dataset> UpdateDatasetAsync(string datasetId, IDatasetSchema schema)
         {
             string datasetUri = $"v1/datasets/{datasetId}";
             _domoHttpClient.SetContentType("application/json");
@@ -74,7 +74,10 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
             StringContent content = new StringContent(schemaJson, Encoding.UTF8);
             var response = await _domoHttpClient.Client.PostAsync(datasetUri, content);
 
-            return response.IsSuccessStatusCode;
+            string responseMessage = await response.Content.ReadAsStringAsync();
+            var newDataset = JsonConvert.DeserializeObject<Dataset>(responseMessage);
+
+            return newDataset;
         }
 
         /// <summary>
