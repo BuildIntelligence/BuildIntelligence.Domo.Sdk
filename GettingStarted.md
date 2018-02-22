@@ -25,6 +25,9 @@ IDomoConfig config = new DomoConfig()
 IGotDomod domo = new DomoClient(config);
 ```
 
+## Dataset Client
+Documentation Coming Soon
+
 ## Stream Client
 
 ### Create new Stream
@@ -76,3 +79,12 @@ if(uploadPartHttpResponse.IsSuccessStatusCode){
 ```Csharp
     StreamDataset updatedStreamDataset = await UpdateMetaAsync(streamId, streamDataset);
 ```
+## User Client
+Documentation Coming Soon
+
+## Group Client
+Documentation Coming Soon
+
+## Page Client
+Documentation Coming Soon
+

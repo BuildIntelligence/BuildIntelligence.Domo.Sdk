@@ -64,8 +64,8 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         /// </summary>
         /// <param name="datasetId"></param>
         /// <param name="schema"></param>
-        /// <returns>Boolean whether update was successful</returns>
-        public async Task<Dataset> UpdateDatasetAsync(string datasetId, IDatasetSchema schema)
+        /// <returns></returns>
+        public async Task<Dataset> UpdateDatasetMetadataAsync(string datasetId, IDatasetSchema schema)
         {
             string datasetUri = $"v1/datasets/{datasetId}";
             _domoHttpClient.SetContentType("application/json");
@@ -84,16 +84,16 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         /// Deletes a dataset
         /// </summary>
         /// <param name="datasetId"></param>
-        /// <returns>Boolean whether deletion was successful or not</returns>
-        public async Task<bool> DeleteDatasetAsync(string datasetId)
+        /// <returns>Http Response from Delete Request</returns>
+        public async Task<HttpResponseMessage> DeleteDatasetAsync(string datasetId)
         {
             string datasetUri = $"v1/datasets/{datasetId}";
             var response = await _domoHttpClient.Client.DeleteAsync($"{datasetUri}");
-            return response.IsSuccessStatusCode;
+            return response;
         }
 
         /// <summary>
-        /// Gets dataset string in csv format
+        /// Gets dataset as string in csv format
         /// </summary>
         /// <param name="datasetId"></param>
         /// <returns>Csv as string</returns>
@@ -106,25 +106,6 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
             return responseAsString;
         }
 
-        /// <summary>
-        /// Gets a dataset and returns a deserialized object of type T
-        /// TODO: CSV Deserializer
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="datasetId"></param>
-        /// <param name="extraParameters"></param>
-        /// <returns>Custom object of type T</returns>
-        public async Task<IEnumerable<T>> RetrieveDataAsync<T>(string datasetId, bool includeHeader = false)
-        {
-            string datasetUri = $"v1/datasets/{datasetId}/data?includeHeader={includeHeader}";
-            _domoHttpClient.SetAcceptRequestHeaders("text/csv");
-            var response = await _domoHttpClient.Client.GetAsync(datasetUri);
-            throw new NotImplementedException();
-            //string responseAsString = await response.Content.ReadAsStringAsync();
-            //var responseAsObject = JsonConvert.DeserializeObject<List<T>>(responseAsString);
-
-            //return responseAsObject;
-        }
 
         /// <summary>
         /// Gets a dataset from Domo and saves a csv to the specified path on local computer
@@ -169,8 +150,8 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         /// </summary>
         /// <param name="datasetId"></param>
         /// <param name="datasetSchema"></param>
-        /// <returns></returns>
-        public async Task<bool> UpdateDatasetAsync(string datasetId, Dataset datasetSchema)
+        /// <returns>Http Response from Dataset Metadata request</returns>
+        public async Task<HttpResponseMessage> UpdateDatasetMetadataAsync(string datasetId, Dataset datasetSchema)
         {
             string datasetUri = $"v1/datasets/{datasetId}";
             _domoHttpClient.SetAcceptRequestHeaders("application/json");
@@ -180,7 +161,7 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
 
             var response = await _domoHttpClient.Client.PutAsync(datasetUri, content);
 
-            return response.IsSuccessStatusCode;
+            return response;
         }
 
         /// <summary>
@@ -189,8 +170,8 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
 		/// <typeparam name="T"></typeparam>
 		/// <param name="datasetId"></param>
 		/// <param name="data"></param>
-		/// <returns>bool whether successful or not</returns>
-        public async Task<bool> ImportDataAsync<T>(string datasetId, string data)
+		/// <returns>Http response from import data request</returns>
+        public async Task<HttpResponseMessage> ImportDataAsync<T>(string datasetId, string data)
         {
             string datasetUri = $"v1/datasets/{datasetId}/data";
             _domoHttpClient.SetContentType("text/csv");
@@ -199,7 +180,7 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
 
             var response = await _domoHttpClient.Client.PutAsync(datasetUri, content);
 
-            return response.IsSuccessStatusCode;
+            return response;
         }
     }
 }
