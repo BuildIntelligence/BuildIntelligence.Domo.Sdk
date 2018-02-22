@@ -11,6 +11,7 @@ Current Release: 0.1.0
 
 ## What's with the interface name for the DomoClient?
 It's a reference to the "You just got Domo'd!" Domo invitation email, and a funny story about how that email broke an entire Domo instance for several hours.
+There was an email dataset in a Domo instance that eventually tied into some key dataflows. One morning the email dataset started having issues which started causing failures in other dataflows. For hours, a new engineer to the team was troubleshooting with no success and only seeing error messages and debug info reading "You Just Got Domod". Eventually he reached out for help and others recognized the phrase. Turns out there was a special character in the "You Just got Domo'd" email that was the cause of the problem. Once that was identified it was quickly resolved and a new dataset was pushed in via the API to get the dataflows functioning again.
 
 ### Features:
 - DataSets API
