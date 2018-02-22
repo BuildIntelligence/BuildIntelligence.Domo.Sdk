@@ -26,6 +26,7 @@ There was an email dataset in a Domo instance that eventually tied into some key
 - PDP Operations have not yet been implemented in this package
 - StreamClient does not yet support gzip
 - No CSV Serialization/Deserialization is done in this package. It takes in serialized strings and returns serialized strings.
+- Activity Log API is not yet supported.
 
 ### Usage
 
