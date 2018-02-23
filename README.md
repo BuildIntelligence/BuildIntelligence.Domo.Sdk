@@ -7,7 +7,7 @@ Current Release: 0.1.0
 ### About
 
 * The BI Domo SDK is a .NET Standard 1.3 Library to streamline using the Domo API in a .NET project. The library provides a simple interface over the Domo API providing a basic set of functionality.
-* [NuGet Package]().
+* [NuGet Package](https://www.nuget.org/packages/BuildIntelligence.Domo.Sdk/).
 
 ## What's with the interface name for the DomoClient?
 It's a reference to the "You just got Domo'd!" Domo invitation email, and a funny story about how that email broke an entire Domo instance for several hours.
