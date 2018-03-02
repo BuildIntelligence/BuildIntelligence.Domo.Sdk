@@ -1,5 +1,6 @@
 ﻿using BuildIntelligence.Domo.Sdk.Exceptions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -11,10 +12,11 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 	public class GroupClient : IDomoGroupClient
 	{
 		private DomoHttpClient _domoHttpClient;
-
-		public GroupClient(IDomoConfig config)
+        private JsonSerializerSettings _serializerSettings;
+        public GroupClient(IDomoConfig config)
 		{
 			_domoHttpClient = new DomoHttpClient(config);
+            _serializerSettings = new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 		}
 
 		/// <summary>
@@ -43,7 +45,7 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 		{
 			string groupUri = $"v1/groups";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			string groupJson = JsonConvert.SerializeObject(group);
+			string groupJson = JsonConvert.SerializeObject(group, _serializerSettings);
 			StringContent content = new StringContent(groupJson, Encoding.UTF8, "application/json");
 
 			var response = await _domoHttpClient.Client.PostAsync(groupUri, content);
@@ -60,7 +62,7 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 		{
 			string groupUri = $"v1/groups/{groupId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			string groupSettingsJson = JsonConvert.SerializeObject(groupSettings);
+			string groupSettingsJson = JsonConvert.SerializeObject(groupSettings, _serializerSettings);
 			StringContent content = new StringContent(groupSettingsJson, Encoding.UTF8, "application/json");
 
 			var response = await _domoHttpClient.Client.PutAsync(groupUri, content);

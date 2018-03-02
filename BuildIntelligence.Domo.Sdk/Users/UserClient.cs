@@ -1,5 +1,6 @@
 ﻿using BuildIntelligence.Domo.Sdk.Exceptions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -9,11 +10,13 @@ namespace BuildIntelligence.Domo.Sdk.Users
 {
     public class UserClient : IDomoUserClient
 	{
-		public DomoHttpClient _domoHttpClient;
+		private DomoHttpClient _domoHttpClient;
+        private JsonSerializerSettings _serializerSettings;
 
-		public UserClient(IDomoConfig config)
+        public UserClient(IDomoConfig config)
 		{
 			_domoHttpClient = new DomoHttpClient(config);
+            _serializerSettings = new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 		}
 
 		/// <summary>
@@ -42,7 +45,7 @@ namespace BuildIntelligence.Domo.Sdk.Users
 			string userId = $"v1/users?sendInvite={sendInvite}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
-			StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+			StringContent content = new StringContent(JsonConvert.SerializeObject(user, _serializerSettings ), Encoding.UTF8, "application/json");
 			var response = await _domoHttpClient.Client.PostAsync(userId, content);
 			string stringResponse = await response.Content.ReadAsStringAsync();
 			return JsonConvert.DeserializeObject<DomoUser>(stringResponse);
@@ -59,7 +62,7 @@ namespace BuildIntelligence.Domo.Sdk.Users
 			string userUri = $"v1/users/{userId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
-			StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+			StringContent content = new StringContent(JsonConvert.SerializeObject(user, _serializerSettings), Encoding.UTF8, "application/json");
 			var response = await _domoHttpClient.Client.PutAsync(userUri, content);
 			return response.IsSuccessStatusCode;
 		}
