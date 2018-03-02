@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/BuildIntelligence/BuildIntelligence.Domo.Sdk</RepositoryUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/BuildIntelligence/BuildIntelligence.Domo.Sdk/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://buildintelligence.com/images/logos/png/Icon/Transparent%20Background/BI-Icon-Square150x150Logo.scale-400.png</PackageIconUrl>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <PackageTags>Domo; Build Intelligence;</PackageTags>
   </PropertyGroup>
 

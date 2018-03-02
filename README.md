@@ -2,7 +2,7 @@
 # .NET Standard 1.3 - Domo API SDK (BuildIntelligence.Domo.Sdk)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://www.opensource.org/licenses/MIT)
 
-Current Release: 0.1.0
+Current Release: 0.1.1
 
 ### About
 
