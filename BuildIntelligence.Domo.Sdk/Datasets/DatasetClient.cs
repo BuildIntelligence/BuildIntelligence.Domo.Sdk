@@ -48,7 +48,8 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         {
             string datasetUri = "v1/datasets";
             _domoHttpClient.SetAcceptRequestHeaders("application/json");
-            string schemaJson = JsonConvert.SerializeObject(schema);
+            DatasetSchema correctSchema = new DatasetSchema() { Description = schema.Description, Rows = schema.Rows, Name = schema.Name, Schema = schema.Schema };
+            string schemaJson = JsonConvert.SerializeObject(correctSchema);
             StringContent content = new StringContent(schemaJson, Encoding.UTF8, "application/json");
             var response = await _domoHttpClient.Client.PostAsync(datasetUri, content);
 
@@ -68,7 +69,8 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         {
             string datasetUri = $"v1/datasets/{datasetId}";
             _domoHttpClient.SetAcceptRequestHeaders("application/json");
-            string schemaJson = JsonConvert.SerializeObject(schema);
+            DatasetSchema correctSchema = new DatasetSchema() { Description = schema.Description, Rows = schema.Rows, Name = schema.Name, Schema = schema.Schema };
+            string schemaJson = JsonConvert.SerializeObject(correctSchema);
             StringContent content = new StringContent(schemaJson, Encoding.UTF8, "application/json");
             var response = await _domoHttpClient.Client.PostAsync(datasetUri, content);
 
