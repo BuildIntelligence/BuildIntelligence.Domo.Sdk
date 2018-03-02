@@ -171,9 +171,8 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         public async Task<HttpResponseMessage> ImportDataAsync(string datasetId, string data)
         {
             string datasetUri = $"v1/datasets/{datasetId}/data";
-            _domoHttpClient.SetContentType("text/csv");
 
-            StringContent content = new StringContent(data);
+            StringContent content = new StringContent(data, Encoding.UTF8, "text/csv");
 
             var response = await _domoHttpClient.Client.PutAsync(datasetUri, content);
 
