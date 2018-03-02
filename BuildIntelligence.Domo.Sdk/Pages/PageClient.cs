@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BuildIntelligence.Domo.Sdk.Pages
@@ -23,7 +24,6 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 		{
 			string pageUri = $"v1/pages/{pageId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
 			var response = await _domoHttpClient.Client.GetAsync(pageUri);
 			string stringResponse = await response.Content.ReadAsStringAsync();
@@ -39,9 +39,8 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 		public async Task<Page> CreatePageAsync(Page page)
 		{
 			string pageUri = "v1/pages";
-			_domoHttpClient.SetContentType("application/json");
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			StringContent content = new StringContent(JsonConvert.SerializeObject(page));
+			StringContent content = new StringContent(JsonConvert.SerializeObject(page), Encoding.UTF8, "application/json");
 
 			var response = await _domoHttpClient.Client.PostAsync(pageUri, content);
 			string stringResponse = await response.Content.ReadAsStringAsync();
@@ -58,10 +57,9 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 		public async Task<bool> UpdatePageAsync(string pageId, Page page)
 		{
 			string pageUri = $"v1/pages/{pageId}";
-			_domoHttpClient.SetContentType("application/json");
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
-			StringContent content = new StringContent(JsonConvert.SerializeObject(page));
+			StringContent content = new StringContent(JsonConvert.SerializeObject(page), Encoding.UTF8, "application/json");
 			var response = await _domoHttpClient.Client.PutAsync(pageUri, content);
 			return response.IsSuccessStatusCode;
 		}
@@ -74,7 +72,6 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 		public async Task<bool> DeletePageAsync(string pageId)
 		{
 			string pageUri = $"v1/pages/{pageId}";
-			_domoHttpClient.SetContentType("application/json");
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
 			var response = await _domoHttpClient.Client.DeleteAsync(pageId);
@@ -91,7 +88,6 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 		{
 			string pageUri = $"v1/pages?offset={offset}&limit={limit}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
 			var response = await _domoHttpClient.Client.GetAsync(pageUri);
 			string stringResponse = await response.Content.ReadAsStringAsync();
@@ -108,7 +104,6 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 		{
 			string pageUri = $"v1/pages/{pageId}/collections";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
 			var response = await _domoHttpClient.Client.GetAsync(pageUri);
 			string stringResponse = await response.Content.ReadAsStringAsync();
@@ -126,9 +121,8 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 		{
 			string pageUri = $"v1/pages/{pageId}/collections";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
-			StringContent content = new StringContent(JsonConvert.SerializeObject(pageInfo));
+			StringContent content = new StringContent(JsonConvert.SerializeObject(pageInfo), Encoding.UTF8, "application/json");
 			var response = await _domoHttpClient.Client.PostAsync(pageUri, content);
 			return response.IsSuccessStatusCode;
 		}
@@ -144,9 +138,8 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 		{
 			string pageUri = $"v1/pages/{pageId}/collections/{pageCollectionId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
-			StringContent content = new StringContent(JsonConvert.SerializeObject(pageInfo));
+			StringContent content = new StringContent(JsonConvert.SerializeObject(pageInfo), Encoding.UTF8, "application/json");
 			var response = await _domoHttpClient.Client.PutAsync(pageUri, content);
 			return response.IsSuccessStatusCode;
 		}
@@ -161,7 +154,6 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 		{
 			string pageUri = $"v1/pages/{pageId}/collections/{pageCollectionId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
 			var response = await _domoHttpClient.Client.DeleteAsync(pageUri);
 			return response.IsSuccessStatusCode;

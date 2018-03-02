@@ -14,6 +14,6 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         Task ExportToCsvFile(string datasetId, string path, bool includeHeader, string fileName);
         Task<Dataset> RetrieveDatasetAsync(string datasetId);
         Task<HttpResponseMessage> UpdateDatasetMetadataAsync(string datasetId, Dataset datasetSchema);
-        Task<HttpResponseMessage> ImportDataAsync<T>(string datasetId, string data);
+        Task<HttpResponseMessage> ImportDataAsync(string datasetId, string data);
     }
 }

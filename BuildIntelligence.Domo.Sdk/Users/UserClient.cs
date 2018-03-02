@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BuildIntelligence.Domo.Sdk.Users
@@ -24,7 +25,6 @@ namespace BuildIntelligence.Domo.Sdk.Users
 		{
 			string userUri = $"v1/users/{userId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
 			var response = await _domoHttpClient.Client.GetAsync(userUri);
 			string stringResponse = await response.Content.ReadAsStringAsync();
@@ -41,9 +41,8 @@ namespace BuildIntelligence.Domo.Sdk.Users
 		{
 			string userId = $"v1/users?sendInvite={sendInvite}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
-			StringContent content = new StringContent(JsonConvert.SerializeObject(user));
+			StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
 			var response = await _domoHttpClient.Client.PostAsync(userId, content);
 			string stringResponse = await response.Content.ReadAsStringAsync();
 			return JsonConvert.DeserializeObject<DomoUser>(stringResponse);
@@ -59,9 +58,8 @@ namespace BuildIntelligence.Domo.Sdk.Users
 		{
 			string userUri = $"v1/users/{userId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
-			StringContent content = new StringContent(JsonConvert.SerializeObject(user));
+			StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
 			var response = await _domoHttpClient.Client.PutAsync(userUri, content);
 			return response.IsSuccessStatusCode;
 		}
@@ -75,7 +73,7 @@ namespace BuildIntelligence.Domo.Sdk.Users
 		{
 			string userUri = $"v1/users/{userId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-
+			
 			var response = await _domoHttpClient.Client.DeleteAsync(userUri);
 			return response.IsSuccessStatusCode;
 		}
@@ -93,7 +91,6 @@ namespace BuildIntelligence.Domo.Sdk.Users
 
             string userUri = $"v1/users?limit={limit}&offset={offset}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
 			var response = await _domoHttpClient.Client.GetAsync(userUri);
 			string stringResponse = await response.Content.ReadAsStringAsync();
