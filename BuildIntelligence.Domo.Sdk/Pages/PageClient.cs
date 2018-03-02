@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -9,10 +10,11 @@ namespace BuildIntelligence.Domo.Sdk.Pages
     public class PageClient : IDomoPageClient
 	{
 		private DomoHttpClient _domoHttpClient;
-
-		public PageClient(IDomoConfig config)
+        private JsonSerializerSettings _serializerSettings;
+        public PageClient(IDomoConfig config)
 		{
 			_domoHttpClient = new DomoHttpClient(config);
+            _serializerSettings = new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 		}
 		
 		/// <summary>
@@ -40,7 +42,7 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 		{
 			string pageUri = "v1/pages";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			StringContent content = new StringContent(JsonConvert.SerializeObject(page), Encoding.UTF8, "application/json");
+			StringContent content = new StringContent(JsonConvert.SerializeObject(page, _serializerSettings), Encoding.UTF8, "application/json");
 
 			var response = await _domoHttpClient.Client.PostAsync(pageUri, content);
 			string stringResponse = await response.Content.ReadAsStringAsync();
@@ -59,7 +61,7 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 			string pageUri = $"v1/pages/{pageId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
-			StringContent content = new StringContent(JsonConvert.SerializeObject(page), Encoding.UTF8, "application/json");
+			StringContent content = new StringContent(JsonConvert.SerializeObject(page, _serializerSettings), Encoding.UTF8, "application/json");
 			var response = await _domoHttpClient.Client.PutAsync(pageUri, content);
 			return response.IsSuccessStatusCode;
 		}
@@ -122,7 +124,7 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 			string pageUri = $"v1/pages/{pageId}/collections";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
-			StringContent content = new StringContent(JsonConvert.SerializeObject(pageInfo), Encoding.UTF8, "application/json");
+			StringContent content = new StringContent(JsonConvert.SerializeObject(pageInfo, _serializerSettings), Encoding.UTF8, "application/json");
 			var response = await _domoHttpClient.Client.PostAsync(pageUri, content);
 			return response.IsSuccessStatusCode;
 		}
@@ -139,7 +141,7 @@ namespace BuildIntelligence.Domo.Sdk.Pages
 			string pageUri = $"v1/pages/{pageId}/collections/{pageCollectionId}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
-			StringContent content = new StringContent(JsonConvert.SerializeObject(pageInfo), Encoding.UTF8, "application/json");
+			StringContent content = new StringContent(JsonConvert.SerializeObject(pageInfo, _serializerSettings), Encoding.UTF8, "application/json");
 			var response = await _domoHttpClient.Client.PutAsync(pageUri, content);
 			return response.IsSuccessStatusCode;
 		}
