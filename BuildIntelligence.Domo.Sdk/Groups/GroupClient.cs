@@ -25,7 +25,7 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 		public async Task<Group> RetrieveGroupAsync(string groupId)
 		{
 			string groupUri = $"v1/groups/{groupId}";
-			_domoHttpClient.SetContentType("application/json");
+			
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
 			var response = await _domoHttpClient.Client.GetAsync(groupUri);
@@ -42,10 +42,9 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 		public async Task<bool> CreateGroupAsync(Group group)
 		{
 			string groupUri = $"v1/groups";
-			_domoHttpClient.SetContentType("application/json");
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 			string groupJson = JsonConvert.SerializeObject(group);
-			StringContent content = new StringContent(groupJson);
+			StringContent content = new StringContent(groupJson, Encoding.UTF8, "application/json");
 
 			var response = await _domoHttpClient.Client.PostAsync(groupUri, content);
 			return response.IsSuccessStatusCode;
@@ -60,10 +59,9 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 		public async Task<bool> UpdateGroupAsync(string groupId, Group groupSettings)
 		{
 			string groupUri = $"v1/groups/{groupId}";
-			_domoHttpClient.SetContentType("application/json");
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 			string groupSettingsJson = JsonConvert.SerializeObject(groupSettings);
-			StringContent content = new StringContent(groupSettingsJson);
+			StringContent content = new StringContent(groupSettingsJson, Encoding.UTF8, "application/json");
 
 			var response = await _domoHttpClient.Client.PutAsync(groupUri, content);
 			return response.IsSuccessStatusCode;
@@ -77,7 +75,6 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 		public async Task<bool> DeleteGroupAsync(string groupId)
 		{
 			string groupUri = $"v1/groups/{groupId}";
-			_domoHttpClient.SetContentType("application/json");
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
 			var response = await _domoHttpClient.Client.DeleteAsync(groupUri);
@@ -97,7 +94,6 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 
             string groupUri = $"v1/groups?offset={offset}&limit={limit}";
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
-			_domoHttpClient.SetContentType("application/json");
 
 			var response = await _domoHttpClient.Client.GetAsync(groupUri);
 			string stringResponse = await response.Content.ReadAsStringAsync();
@@ -114,7 +110,6 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 		public async Task<bool> AddUserAsync(string groupId, string userId)
 		{
 			string groupUri = $"v1/groups/{groupId}/users/{userId}";
-			_domoHttpClient.SetContentType("application/json");
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
 			var response = await _domoHttpClient.Client.PutAsync(groupUri, null);
@@ -134,7 +129,6 @@ namespace BuildIntelligence.Domo.Sdk.Groups
             if (limit < 0) throw new LimitNotWithinBoundsException($"List limit {limit} cannot be used. Use a limit value between 1 and 500");
 
             string groupUri = $"v1/groups/{groupId}/users?offset={offset}&limit={limit}";
-			_domoHttpClient.SetContentType("application/json");
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
 			var response = await _domoHttpClient.Client.GetAsync(groupUri);
@@ -152,7 +146,6 @@ namespace BuildIntelligence.Domo.Sdk.Groups
 		public async Task<bool> RemoveUserAsync(string groupId, string userId)
 		{
 			string groupUri = $"v1/groups/{groupId}/users/{userId}";
-			_domoHttpClient.SetContentType("application/json");
 			_domoHttpClient.SetAcceptRequestHeaders("application/json");
 
 			var response = await _domoHttpClient.Client.DeleteAsync(groupUri);

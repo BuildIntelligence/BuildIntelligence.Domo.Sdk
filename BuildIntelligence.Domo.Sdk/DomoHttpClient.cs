@@ -85,15 +85,6 @@ namespace BuildIntelligence.Domo.Sdk
 			Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue($"{mediaType2}"));
 		}
 
-		public void SetContentType(string contentType)
-		{
-			if (Client.DefaultRequestHeaders.Contains("Content-Type"))
-			{
-				Client.DefaultRequestHeaders.Remove("Content-Type");
-			}
-			Client.DefaultRequestHeaders.Add("Content-Type", $"{contentType}");
-		}
-
 		public void SetAuthorizationHeader(string schema, string parameter)
 		{
 			Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue($"{schema}", $"{parameter}");

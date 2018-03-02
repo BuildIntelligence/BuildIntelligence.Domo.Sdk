@@ -47,10 +47,9 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         public async Task<Dataset> CreateDatasetAsync(IDatasetSchema schema)
         {
             string datasetUri = "v1/datasets";
-            _domoHttpClient.SetContentType("application/json");
             _domoHttpClient.SetAcceptRequestHeaders("application/json");
             string schemaJson = JsonConvert.SerializeObject(schema);
-            StringContent content = new StringContent(schemaJson, Encoding.UTF8);
+            StringContent content = new StringContent(schemaJson, Encoding.UTF8, "application/json");
             var response = await _domoHttpClient.Client.PostAsync(datasetUri, content);
 
             string responseMessage = await response.Content.ReadAsStringAsync();
@@ -68,10 +67,9 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         public async Task<Dataset> UpdateDatasetMetadataAsync(string datasetId, IDatasetSchema schema)
         {
             string datasetUri = $"v1/datasets/{datasetId}";
-            _domoHttpClient.SetContentType("application/json");
             _domoHttpClient.SetAcceptRequestHeaders("application/json");
             string schemaJson = JsonConvert.SerializeObject(schema);
-            StringContent content = new StringContent(schemaJson, Encoding.UTF8);
+            StringContent content = new StringContent(schemaJson, Encoding.UTF8, "application/json");
             var response = await _domoHttpClient.Client.PostAsync(datasetUri, content);
 
             string responseMessage = await response.Content.ReadAsStringAsync();
@@ -155,9 +153,8 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
         {
             string datasetUri = $"v1/datasets/{datasetId}";
             _domoHttpClient.SetAcceptRequestHeaders("application/json");
-            _domoHttpClient.SetContentType("application/json");
             string schemaAsString = JsonConvert.SerializeObject(datasetSchema);
-            StringContent content = new StringContent(schemaAsString, Encoding.UTF8);
+            StringContent content = new StringContent(schemaAsString, Encoding.UTF8, "application/json");
 
             var response = await _domoHttpClient.Client.PutAsync(datasetUri, content);
 
@@ -171,7 +168,7 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
 		/// <param name="datasetId"></param>
 		/// <param name="data"></param>
 		/// <returns>Http response from import data request</returns>
-        public async Task<HttpResponseMessage> ImportDataAsync<T>(string datasetId, string data)
+        public async Task<HttpResponseMessage> ImportDataAsync(string datasetId, string data)
         {
             string datasetUri = $"v1/datasets/{datasetId}/data";
             _domoHttpClient.SetContentType("text/csv");
