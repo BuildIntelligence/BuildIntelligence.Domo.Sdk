@@ -59,25 +59,23 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
             return newDataset;
         }
 
-        /// <summary>
-        /// Updates existing dataset schema
-        /// </summary>
-        /// <param name="datasetId"></param>
-        /// <param name="schema"></param>
-        /// <returns></returns>
-        public async Task<Dataset> UpdateDatasetMetadataAsync(string datasetId, IDatasetSchema schema)
+		/// <summary>
+		/// Updates the dataset schema
+		/// </summary>
+		/// <param name="datasetId"></param>
+		/// <param name="datasetSchema"></param>
+		/// <returns>Http Response from Dataset Metadata request</returns>
+		public async Task<HttpResponseMessage> UpdateDatasetMetadataAsync(string datasetId, IDatasetSchema schema)
         {
             string datasetUri = $"v1/datasets/{datasetId}";
             _domoHttpClient.SetAcceptRequestHeaders("application/json");
             DatasetSchema correctSchema = new DatasetSchema() { Description = schema.Description, Rows = schema.Rows, Name = schema.Name, Schema = schema.Schema };
             string schemaJson = JsonConvert.SerializeObject(correctSchema);
+
             StringContent content = new StringContent(schemaJson, Encoding.UTF8, "application/json");
             var response = await _domoHttpClient.Client.PostAsync(datasetUri, content);
 
-            string responseMessage = await response.Content.ReadAsStringAsync();
-            var newDataset = JsonConvert.DeserializeObject<Dataset>(responseMessage);
-
-            return newDataset;
+            return response;
         }
 
         /// <summary>
@@ -143,24 +141,6 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
             string responseAsString = await response.Content.ReadAsStringAsync();
             Dataset responseMetadata = JsonConvert.DeserializeObject<Dataset>(responseAsString);
             return responseMetadata;
-        }
-
-        /// <summary>
-        /// Updates the dataset schema
-        /// </summary>
-        /// <param name="datasetId"></param>
-        /// <param name="datasetSchema"></param>
-        /// <returns>Http Response from Dataset Metadata request</returns>
-        public async Task<HttpResponseMessage> UpdateDatasetMetadataAsync(string datasetId, Dataset datasetSchema)
-        {
-            string datasetUri = $"v1/datasets/{datasetId}";
-            _domoHttpClient.SetAcceptRequestHeaders("application/json");
-            string schemaAsString = JsonConvert.SerializeObject(datasetSchema);
-            StringContent content = new StringContent(schemaAsString, Encoding.UTF8, "application/json");
-
-            var response = await _domoHttpClient.Client.PutAsync(datasetUri, content);
-
-            return response;
         }
 
         /// <summary>
