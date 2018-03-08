@@ -75,7 +75,7 @@ namespace BuildIntelligence.Domo.Sdk.Datasets
             string schemaJson = JsonConvert.SerializeObject(correctSchema, _serializerSettings);
             StringContent content = new StringContent(schemaJson, Encoding.UTF8, "application/json");
             
-            var response = await _domoHttpClient.Client.PostAsync(datasetUri, content);
+            var response = await _domoHttpClient.Client.PutAsync(datasetUri, content);
 
             return response;
         }
